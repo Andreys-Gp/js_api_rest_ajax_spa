@@ -14,8 +14,49 @@
 <h2>API FECTH</h2>
 <ol id="fecth"></ol>
 
+<h2> API FECTH ASYNC-AWAIT</h2>
+<ol id="fecth-async"></ol>
+
     <script>
 
+      
+
+  //async await fect
+      (()=>{
+        const $fecthAsync=document.getElementById("fecth-async")
+        $fragment = document.createDocumentFragment();
+        
+
+        async function getData(){
+          try {
+            let res=await fetch("https://jsonplaceholder.typicode.com/users"),
+            json=await res.json();
+
+            if(!res.ok) throw { Status: res.status, StatusText: res.statusText}
+              
+    
+        json.forEach((el) => {
+        const $li = document.createElement("li");
+        $li.innerHTML = `${el.name} -- ${el.email} -- ${el.phone}`;
+        $fragment.appendChild($li); });
+
+        $fecthAsync.appendChild($fragment);  
+
+          } catch (error) {
+            let message=err.statusText || "ocurrio un error";
+            $fecthAsync.innerHTML=`Error ${error.status}: ${message}`
+            
+          }finally{
+
+          }
+          
+        }
+
+        getData()
+      })();
+
+
+      //objetoo httpp  XMLHttpRequest
        (() => {
 
   const xhr = new XMLHttpRequest(),
@@ -81,9 +122,10 @@
     .finally(
         ()=>{console.log("finally")}
     );
-
-
 })();
+
+
+
 
     </script>
     

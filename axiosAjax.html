@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <h2>Axios</h2>
+ <ol id="axios"></ol>
+<h2>Axios+Async-Await</h2>
+ <ol id="axiosAsyncAwait"></ol>
+
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+
+
+
+        //libreria -axiOS
+        (()=>{
+        const $axios=document.getElementById("axios"),
+        $fragment = document.createDocumentFragment();
+        
+        axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((res)=>{
+            console.log(res)
+
+            let json=res.data;
+            json.forEach((el) => {
+        const $li = document.createElement("li");
+        $li.innerHTML = `${el.name} -- ${el.email} -- ${el.phone}`;
+        $fragment.appendChild($li); });
+
+        $axios  .appendChild($fragment)
+
+        })
+        .catch((err)=>{
+            console.log("estamos en el cahtch",err.response)
+            let message=err.response.statusText || "ocurrio un error";
+            $axios.innerHTML=`Error ${err.response.status}: ${message}`
+ 
+        })
+        .finally(()=>{
+            console.log("esto funciona independiente dela estructura codigo")
+        }
+        )
+
+
+    })()
+
+    </script>
+</body>
+</html>
