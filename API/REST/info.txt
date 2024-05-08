@@ -1,6 +1,6 @@
 iniciar proyecto json server 
 
-json-server --watch API\RES/db.son               ejemplo 
+json-server --watch API\RES/db.json               ejemplo 
 
 --watch mantiene en visualizacion todos los cambios dentro de la base datos 
 
